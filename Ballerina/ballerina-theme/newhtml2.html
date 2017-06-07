@@ -1,0 +1,137 @@
+## PAGE SPECIFIC DECORATOR
+## Here the context is the page. Modes are 'view', 'edit', 'edit-preview', 'view-information', and 'view-attachments'.
+
+#set ($helper = $params.get("helper"))
+#set ($mode = $params.get("mode"))
+#set ($context = $params.get("context"))
+#set ($confPage = $helper.page)
+
+#infoPanelInitFromParams()
+## GENERAL PAGE DECORATING BEGINS
+
+#requireResourcesForContext("page")
+
+#if ($mode == "view" && $darkFeatures.isFeatureEnabled('page-metadata-banner'))
+    #requireResourcesForContext("pagebanner")
+    <content tag="page-metadata-banner">
+        #assistiveSkipLink("assistive.skiplink.to.metadata.end" "page-metadata-end")
+        <div id="page-metadata-start" class="assistive"></div>
+        #webPanelForLocation("atl.page.metadata.banner", {"action": $action})
+    </content>
+#end
+
+#if ($mode != "edit" && $mode != "edit-preview")
+    #parse ("/decorators/includes/content-navigation.vm")
+#end
+
+#if ($infoPanelRequired)
+<content tag="sidebar">
+    #infoPanel("true" true true true)
+</content>
+#end
+
+#if( ($mode != "edit" && $mode != "edit-preview" ))
+<content tag="ia-sidebar" class="wso2page">
+	#foreach ($webPanel in $webInterfaceManager.getDisplayableWebPanels("atl.page.left.sidebar", {"page": $confPage, "context": $context}))
+    	$!webPanel.getHtml($action.context)
+    #end
+</content>
+#end
+
+<div id="content" class="page $!mode">
+    #parse("/decorators/includes/page-content-includes.vm")
+
+    ## MODE SPECIFIC DECORATING BEGINS
+    #*
+        Display page based on mode: currently 'view', 'edit', 'preview-edit', 'info' and 'attachments.
+        See the individual page templates (viewpage.vm, editpage.vm, etc.) for the setting of the mode parameter.
+    *#
+    ## VIEW
+
+    #if ($mode == "view")
+        <content tag="headsection">xxxxxxxxxxx
+            #webPanelForLocation("atl.confluence.viewpage.header" $action.context)
+        </content>
+
+        #if ($space.personal)
+            #if ($permissionHelper.canView($action.authenticatedUser, $space.creator))
+                ## Deprecated: needed in case main.vmd hasn't been updated
+                <content tag="show-personal-sidebar">true</content>
+            #end
+        #end
+
+        #requireResourcesForContext("viewcontent")
+
+        #set ($labelable = $page)
+        #permitSearchEngines()
+
+        #if ($helper.isHistoricalVersion())
+            <content tag="suppressPdfLink">true</content>
+        #end
+
+        #if ($darkFeatures.isFeatureEnabled('page-metadata-banner'))
+            #assistiveSkipLink("assistive.skiplink.to.metadata.start" "page-metadata-start")
+            <div id="page-metadata-end" class="assistive"></div>
+        #else
+            #parse ("/decorators/includes/page-metadata.vm")
+        #end
+
+        #if ($helper.isHistoricalVersion() || $helper.action.navigatingVersions)
+                #versionInfo()
+        #end
+
+        ## If you choose to move page it's being done from view mode
+        #putMetadata('browse-page-tree-mode', 'view')
+        #putMetadata('parent-page-id', $!parentPage.id)
+
+        <div id="main-content" class="wiki-content">
+           $body
+        </div>
+
+        #trackbackRdf ($trackbackUtils.getContentIdentifier($page) $page.title $trackbackUtils.getPingUrl($page))
+
+        #if ($mode != "edit" && $mode != "edit-preview")
+            #set($labelable = $page)
+            #parse("/labels/labels-editor.vm")
+        #end
+
+		#if (!$action.childrenNotShown)
+        #renderChildren()
+		#end
+
+        #applyDecorator("root")
+            #decoratorParam("sitemeshPage" $sitemeshPage)
+            #decoratorParam("page" $page)
+            #decoratorParam("context" "comments")
+        #end
+
+    ## EDIT || PREVIEW-EDIT
+    #elseif ($mode == "edit" || $mode == "edit-preview")
+        $body
+
+    ## INFO
+    #elseif ($mode == "view-information")
+        #requireResourcesForContext("viewinformation")
+        $body
+
+    ## ATTACHMENTS
+    #elseif ($mode == "view-attachments" || $mode == "move-attachments" || $mode == "view-attachment")
+        #requireResourcesForContext("viewattachments")
+        $body
+
+    ## FOR CUSTOM WEB-ITEMS
+    #else
+        $body
+
+    #end
+    ## MODE SPECIFIC DECORATING ENDS
+
+</div>
+
+## GENERAL PAGE DECORATING ENDS
+
+#parse ("/pages/page-breadcrumbs.vm")
+#if ($mode != "edit" && $mode != "edit-preview")
+    #parse("/template/includes/space-tools-web-items.vm")
+#end
+#menuMacros_renderBrowseMenu()

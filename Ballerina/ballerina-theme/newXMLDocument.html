@@ -1,0 +1,334 @@
+
+<link href="https://fonts.googleapis.com/css?family=Cousine" rel="stylesheet">
+<link type="text/css" rel="stylesheet" media="all" href="//c.content.wso2.com/sites/all/common/wso2-common-styles.css">
+<link href="//b.content.wso2.com/sites/all/wum/wum.css" rel="stylesheet">
+<style>
+   .row.cWUM2 .container.cThreeCol .cDownloadPannel a.cButtonColored {
+   text-transform: none !important;
+   }
+   .cDownloadPannel p {
+   font-size: 0.8em;
+   font-weight: 400;
+   text-align: center;
+   }
+</style>
+<script type="text/javascript">
+   $(document).ready(function() {
+    
+       var pack_url;
+       $(".cDLbanner").hide();
+       
+       $(".WumDownloadWin").click(function(event) {
+           event.preventDefault();
+           $('html, body').animate({
+                     scrollTop: $("#iWindows").offset().top
+                   }, 1000);
+                   
+                   pack_url =  $(this).attr("href");
+                   $(".cDLbanner").hide();
+                   $(".winDownloadBanner").show();
+                   $(".winDownloadBanner").html('Your download should begin shortly. If it does not, click<a href="'+pack_url+'"> this link.</a>');
+                   window.location.href=pack_url;
+       });
+       $(".WumDownloadMac").click(function(event) {
+           event.preventDefault();
+           $('html, body').animate({
+                     scrollTop: $("#iMac").offset().top
+                   }, 1000);
+                   pack_url =  $(this).attr("href");
+                   $(".cDLbanner").hide();
+                   $(".macDownloadBanner").show();
+                   $(".macDownloadBanner").html('Your download should begin shortly. If it does not, click<a href="'+pack_url+'"> this link.</a>');                                
+                   window.location.href=pack_url;
+       });
+       $(".WumDownloadLinux").click(function(event) {
+           event.preventDefault();
+           $('html, body').animate({
+                     scrollTop: $("#iLinux").offset().top
+                   }, 1000);
+                   pack_url =  $(this).attr("href");
+                   $(".cDLbanner").hide();
+                   $(".linuxDownloadBanner").show();
+                   $(".linuxDownloadBanner").html('Your download should begin shortly. If it does not, click<a href="'+pack_url+'"> this link.</a>');                                
+                   window.location.href=pack_url;
+       });                    
+   });
+</script>
+
+<style>
+    .cWUMCode br {
+        display: none
+    }
+</style>
+<div class="row cWUMIntro cDowunload" style="margin-top: 3em;">
+   <div class="container">
+      <div class="col-sm-12 col-md-2 cLogoContainer">
+         <img class="WUMlogo" src="http://b.content.wso2.com/sites/all/wum/wumlogo.svg"/>
+      </div>
+      <div class="col-sm-12 col-md-10">
+         <h1>Download</h1>
+         <!--            <p>WUM will build you a package ready to deploy into your development or production environment. </p>-->
+         <!--            <h3>WSO2 Update is a service that provides you continuous access to all bug fixes and improvements to WSO2 products.  </h3>-->
+      </div>
+   </div>
+</div>
+<div class="row cWUM2 cDownload">
+   <div class="container cThreeCol">
+      <div class="col-sm-12 col-md-4 cOsCol">
+         <div class="cOSLogoContainer">
+            <img class="cOSicons" src="http://b.content.wso2.com/sites/all/wum/windos.svg"/>
+            <h2>Microsoft Windows</h2>
+         </div>
+         <div class="cDownloadPannel">
+            <p>Windows XP or later, intel 64-bit processor</p>
+            <a class="cButtonColored WumDownloadWin" id="iWUM-win-64" href="http://product-dist.wso2.com/downloads/wum/1.0-beta/wum-1.0-beta-windows-x64.msi" data="#iWindows">wum-1.0-beta-windows-x64.msi</a>
+            <div class="cOtherWUMLinks">
+               <ul>
+                  <li>
+                     <a href="http://product-dist.wso2.com/downloads/wum/1.0-beta/wum-1.0-beta-windows-x64.msi.md5">md5</a>
+                  </li>
+                  <li>
+                     <a target="_blank" href="http://product-dist.wso2.com/downloads/wum/1.0-beta/wum-1.0-beta-windows-x64.msi.asc">Signature </a>
+                  </li>
+               </ul>
+            </div>
+            <p>Windows XP or later, intel 32-bit processor </p>
+            <a class="cButtonColored WumDownloadWin" id="iWUM-win-32" href="http://product-dist.wso2.com/downloads/wum/1.0-beta/wum-1.0-beta-windows-i586.msi" data="#iWindows">wum-1.0-beta-windows-i586.msi</a>
+            <div class="cOtherWUMLinks">
+               <ul>
+                  <li>
+                     <a href="http://product-dist.wso2.com/downloads/wum/1.0-beta/wum-1.0-beta-windows-i586.msi.md5">md5</a>
+                  </li>
+                  <li>
+                     <a target="_blank" href="http://product-dist.wso2.com/downloads/wum/1.0-beta/wum-1.0-beta-windows-i586.msi.asc">Signature </a>
+                  </li>
+               </ul>
+            </div>
+         </div>
+      </div>
+      <div class="col-sm-12 col-md-4 cOsCol">
+         <div class="cOSLogoContainer">
+            <img class="cOSicons" src="http://b.content.wso2.com/sites/all/wum/mac.svg"/>
+            <h2>Apple OS X</h2>
+         </div>
+         <div class="cDownloadPannel">
+            <p>OS X 10.8 or later, intel 64-bit processor  </p>
+            <a class="cButtonColored WumDownloadMac" id="iWUM-mac-64" href="http://product-dist.wso2.com/downloads/wum/1.0-beta/wum-1.0-beta-macosx-x64.pkg">wum-1.0-beta-macosx-x64.pkg</a>
+            <div class="cOtherWUMLinks">
+               <ul>
+                  <li>
+                     <a href="http://product-dist.wso2.com/downloads/wum/1.0-beta/wum-1.0-beta-macosx-x64.pkg.md5">md5</a>
+                  </li>
+                  <li>
+                     <a target="_blank" href="http://product-dist.wso2.com/downloads/wum/1.0-beta/wum-1.0-beta-macosx-x64.pkg.asc">Signature </a>
+                  </li>
+               </ul>
+            </div>
+         </div>
+      </div>
+      <div class="col-sm-12 col-md-4 cOsCol">
+         <div class="cOSLogoContainer">
+            <img class="cOSicons" src="http://b.content.wso2.com/sites/all/wum/linux.svg"/>
+            <h2>Linux</h2>
+         </div>
+         <div class="cDownloadPannel">
+            <p>Linux 2.6.23 or later, intel 64-bit processor  </p>
+            <a class="cButtonColored WumDownloadLinux" id="iWUM-linux-64" href="http://product-dist.wso2.com/downloads/wum/1.0-beta/wum-1.0-beta-linux-x64.tar.gz">wum-1.0-beta-linux-x64.tar.gz </a>
+            <div class="cOtherWUMLinks">
+               <ul>
+                  <li>
+                     <a href="http://product-dist.wso2.com/downloads/wum/1.0-beta/wum-1.0-beta-linux-x64.tar.gz.md5">md5</a>
+                  </li>
+                  <li>
+                     <a target="_blank" href="http://product-dist.wso2.com/downloads/wum/1.0-beta/wum-1.0-beta-linux-x64.tar.gz.asc">Signature </a>
+                  </li>
+               </ul>
+            </div>
+            <p>Linux 2.6.23 or later, intel 32-bit processor </p>
+            <a class="cButtonColored WumDownloadLinux" id="iWUM-linux-32" href="http://product-dist.wso2.com/downloads/wum/1.0-beta/wum-1.0-beta-linux-i586.tar.gz">wum-1.0-beta-linux-i586.tar.gz  </a>
+            <div class="cOtherWUMLinks">
+               <ul>
+                  <li>
+                     <a href="http://product-dist.wso2.com/downloads/wum/1.0-beta/wum-1.0-beta-linux-i586.tar.gz.asc">md5</a>
+                  </li>
+                  <li>
+                     <a target="_blank" href="http://product-dist.wso2.com/downloads/wum/1.0-beta/wum-1.0-beta-linux-i586.tar.gz.asc">Signature </a>
+                  </li>
+               </ul>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<div class="row cWUM2 cNote" >
+   <div class="container">
+      <div class="col-sm-12 col-md-12">
+         <p>You need a WSO2 account to start using the update service. </p>
+         <p class="cSignUp">Don’t have one yet? Sign up for one <a id="iWUM-download-page-register" href="https://wso2.com/user/register">here</a>.</p>
+      </div>
+   </div>
+</div>
+<div class="row cWUM_Howto cTitle">
+   <div class="container">
+      <div class="col-sm-12 col-md-12">
+         <h2>Install WUM</h2>
+      </div>
+   </div>
+</div>
+<a id="iWindows"></a>
+<div class="row cWUM_Howto" style="padding-top: 1em;">
+   <div class="container">
+      <div class="col-sm-12 col-md-12">
+         <div class="cDLbanner winDownloadBanner"></div>
+         <div class="">
+            <img class="cOSicons" src="http://b.content.wso2.com/sites/all/wum/windos.svg"/>
+            <h2>Windows</h2>
+         </div>
+      </div>
+      <div class="col-sm-12 col-md-12">
+         <h3>MSI installer</h3>
+         <p>Open the MSI file and follow the prompts to install the wum client. By default, the installer puts the wum installation in <span class="cInlineCommands">C:\Program Files\WUM\</span>
+            The installer should put the <span class="cInlineCommands">C:\Program Files\WUM\bin</span> directory in your PATH environment variable. You may need to restart any open command prompts for the change to take effect.
+         </p>
+      </div>
+      <div class="col-sm-12 col-md-12">
+         <h3>Test your installation</h3>
+         <p>To check that wum is installed correctly by running “<span class="cInlineCommands">wum</span>” command in command line as follows.</p>
+         <p>Open command prompt in windows and type “<span class="cInlineCommands">wum</span>”.</p>
+         <pre class="cWUMCode">
+            C:\>wum
+            WUM keeps WSO2 products up-to-date.
+            * Find more information at http://wso2.com/update
+            Usage:
+            wum [command]
+            Available Commands:
+            init         Initialize WUM with your WSO2 credentials
+            search       Search products containing specific keyword(s)
+            add          Add or download a product
+            check-update Check for new updates for products
+            update       Update products in your local repository
+            list         List products in your local repository
+            describe     Show details of products in your local repository
+            delete       Delete products in your local repository
+            config       Change WUM configuration
+            version      Display wum version information
+            Flags:
+            -h, --help      help for wum
+            -v, --verbose   enable verbose mode
+            Use "wum [command] --help" for more information about a command.
+         </pre>
+         <p>If you see the wum usage and available command message then your wum installation is working.</p>
+      </div>
+      <div class="col-sm-12 col-md-12">
+         <h3>Uninstalling WUM</h3>
+         <p>To remove an existing wum installation from your system, you can directly uninstall from the control panel.</p>
+      </div>
+   </div>
+</div>
+<a id="iMac"></a>
+<div class="row cWUM_Howto" >
+   <div class="container">
+      <div class="col-sm-12 col-md-12">
+         <div class="cDLbanner macDownloadBanner"></div>
+         <div class="">
+            <img class="cOSicons" src="http://b.content.wso2.com/sites/all/wum/mac.svg"/>
+            <h2>Apple OS X</h2>
+         </div>
+      </div>
+      <div class="col-sm-12 col-md-12">
+         <h3>Mac OS X package installer</h3>
+         <p>Download the package file, open it, and follow the prompts to install the wum. The package installs the wum distribution to <span class="cInlineCommands">/usr/local/wum</span>.</p>
+         <p>The package should put the <span class="cInlineCommands">/usr/local/wum/bin</span> directory in your PATH environment variable. You may need to restart any open Terminal sessions for the change to take effect.</p>
+      </div>
+      <div class="col-sm-12 col-md-12">
+         <h3>Test your installation</h3>
+         <p>To check that wum is installed correctly by running “<span class="cInlineCommands">wum</span>” command in terminal as follows.</p>
+         <p>Open terminal and type “<span class="cInlineCommands">wum</span>”.</p>
+         <pre class="cWUMCode">
+            $ wum
+            WUM keeps WSO2 products up-to-date.
+            * Find more information at http://wso2.com/update
+            Usage:
+            wum [command]
+            Available Commands:
+            init         Initialize WUM with your WSO2 credentials
+            search       Search products containing specific keyword(s)
+            add          Add or download a product
+            check-update Check for new updates for products
+            update       Update products in your local repository
+            list         List products in your local repository
+            describe     Show details of products in your local repository
+            delete       Delete products in your local repository
+            config       Change WUM configuration
+            version      Display wum version information
+            Flags:
+            -h, --help      help for wum
+            -v, --verbose   enable verbose mode
+            Use "wum [command] --help" for more information about a command.
+         </pre>
+         <p>If you see the wum usage and available command message then your wum installation is working.</p>
+      </div>
+      <div class="col-sm-12 col-md-12">
+         <h3>Uninstalling WUM</h3>
+         <p>To remove an existing wum installation from your system delete the wum directory. This is usually <span class="cInlineCommands">/usr/local/wum</span>.</p>
+         <p>
+            You should also remove the wum bin directory from your PATH environment variable. If you installed wum with the Mac OS X package then you should remove the <span class="cInlineCommands">/etc/paths.d/wum</span> file</.
+         </p>
+      </div>
+   </div>
+</div>
+<a id="iLinux"></a>
+<div class="row cWUM_Howto">
+   <div class="container">
+      <div class="col-sm-12 col-md-12">
+         <div class="cDLbanner linuxDownloadBanner"></div>
+         <div class="">
+            <img class="cOSicons" src="http://b.content.wso2.com/sites/all/wum/linux.svg"/>
+         </div>
+      </div>
+      <div class="col-sm-12 col-md-12">
+         <h3>Linux tarballs</h3>
+         <p>Download the archive and extract it into /usr/local. </p>
+         <p>For example:</p>
+         <xmp class="cWUMCode">tar -C /usr/local -xzf wum-1.0-beta-linux-x64.tar.gz</xmp>
+         <p>(Typically these commands must be run as root or through sudo.) <br />
+            Add <span class="cInlineCommands">/usr/local/wum/bin</span> to the PATH environment variable. You can do this by adding this line to your<span class="cInlineCommands">/etc/profile</span> (for a system-wide installation) or <span class="cInlineCommands">$HOME/.profile:</span>
+         </p>
+         <xmp class="cWUMCode">export PATH=$PATH:/usr/local/wum/bin</xmp>
+      </div>
+      <div class="col-sm-12 col-md-12">
+         <h3>Test your installation</h3>
+         <p>To check that wum is installed correctly by running “<span class="cInlineCommands">wum</span>” command in terminal as follows.</p>
+         <p>Open terminal and type “<span class="cInlineCommands">wum</span>”.</p>
+         <pre class="cWUMCode">
+            $ wum
+            WUM keeps WSO2 products up-to-date.
+            * Find more information at http://wso2.com/update
+            Usage:
+            wum [command]
+            Available Commands:
+            init         Initialize WUM with your WSO2 credentials
+            search       Search products containing specific keyword(s)
+            add          Add or download a product
+            check-update Check for new updates for products
+            update       Update products in your local repository
+            list         List products in your local repository
+            describe     Show details of products in your local repository
+            delete       Delete products in your local repository
+            config       Change WUM configuration
+            version      Display wum version information
+            Flags:
+            -h, --help      help for wum
+            -v, --verbose   enable verbose mode
+            Use "wum [command] --help" for more information about a command.
+         </pre>
+         <p>If you see the wum usage and available command message then your wum installation is working.</p>
+      </div>
+      <div class="col-sm-12 col-md-12">
+         <h3>Uninstalling WUM</h3>
+         <p>To remove an existing wum installation from your system delete the wum directory. This is usually <span class="cInlineCommands">/usr/local/wum</span>.</p>
+         <p>You should also remove the wum bin directory from your PATH environment variable. You should edit <span class="cInlineCommands">/etc/profile</span> or <span class="cInlineCommands">$HOME/.profile</span>.</p>
+      </div>
+   </div>
+</div>
+
