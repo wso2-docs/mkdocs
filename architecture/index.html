@@ -1,0 +1,1232 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-\.]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-3.0.6">
+    
+    
+      
+        <title>User Management Architecture - WSO2 Identity Server</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.451f80e5.css">
+      
+        <link rel="stylesheet" href="../assets/stylesheets/application-palette.22915126.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#546e7a">
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,400i,700|Courier+New">
+        <style>body,input{font-family:"Nunito Sans","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Courier New","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    
+      <link rel="stylesheet" href="../extra.css">
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="blue-grey" data-md-color-accent="deep-orange">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#architecture-and-process-flow" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href=".." title="WSO2 Identity Server" class="md-header-nav__button md-logo">
+          
+            <img src="../images/logo.svg" width="24" height="24">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                WSO2 Identity Server
+              </span>
+              <span class="md-header-nav__topic">
+                User Management Architecture
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href=".." title="Home" class="md-tabs__link">
+        Home
+      </a>
+    
+  </li>
+
+      
+        
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../product_overview/" title="Getting Started" class="md-tabs__link">
+          Getting Started
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="./" title="Architecture" class="md-tabs__link md-tabs__link--active">
+          Architecture
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../QSG/" title="User Guides" class="md-tabs__link">
+          User Guides
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../product_overview/" title="Admin Guides" class="md-tabs__link">
+          Admin Guides
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href=".." title="WSO2 Identity Server" class="md-nav__button md-logo">
+      
+        <img src="../images/logo.svg" width="48" height="48">
+      
+    </a>
+    WSO2 Identity Server
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../about/" title="About" class="md-nav__link">
+      About
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Getting Started
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Getting Started
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../product_overview/" title="Product Overview" class="md-nav__link">
+      Product Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../QSG/" title="QSG" class="md-nav__link">
+      QSG
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../QSG/" title="Samples" class="md-nav__link">
+      Samples
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../QSG/" title="Release Notes" class="md-nav__link">
+      Release Notes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../QSG/" title="Compliance and Privacy" class="md-nav__link">
+      Compliance and Privacy
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+    
+    <label class="md-nav__link" for="nav-4">
+      Architecture
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Architecture
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="./" title="Architecture and Process Flow" class="md-nav__link">
+      Architecture and Process Flow
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="./" title="Provisioning Architecture" class="md-nav__link">
+      Provisioning Architecture
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        User Management Architecture
+      </label>
+    
+    <a href="./" title="User Management Architecture" class="md-nav__link md-nav__link--active">
+      User Management Architecture
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-and-process-flow" title="Architecture and Process Flow" class="md-nav__link">
+    Architecture and Process Flow
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authentication-framework" title="Authentication Framework" class="md-nav__link">
+    Authentication Framework
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#inbound-authenticators" title="Inbound Authenticators" class="md-nav__link">
+    Inbound Authenticators
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#local-authenticators" title="Local Authenticators" class="md-nav__link">
+    Local Authenticators
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outboundfederated-authenticators" title="Outbound/Federated Authenticators" class="md-nav__link">
+    Outbound/Federated Authenticators
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multi-option-authenticators" title="Multi-Option Authenticators" class="md-nav__link">
+    Multi-Option Authenticators
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multi-factor-authenticators" title="Multi-Factor Authenticators" class="md-nav__link">
+    Multi-Factor Authenticators
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#provisioning-framework" title="Provisioning Framework" class="md-nav__link">
+    Provisioning Framework
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#inbound-provisioning" title="Inbound provisioning" class="md-nav__link">
+    Inbound provisioning
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#just-in-time-provisioning" title="Just-in-time provisioning" class="md-nav__link">
+    Just-in-time provisioning
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outbound-provisioning" title="Outbound provisioning" class="md-nav__link">
+    Outbound provisioning
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#components" title="Components" class="md-nav__link">
+    Components
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-providers" title="Service Providers" class="md-nav__link">
+    Service Providers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inbound-authentication" title="Inbound Authentication" class="md-nav__link">
+    Inbound Authentication
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authentication-framework_1" title="Authentication Framework" class="md-nav__link">
+    Authentication Framework
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#local-authenticators_1" title="Local Authenticators" class="md-nav__link">
+    Local Authenticators
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#federated-authenticators" title="Federated Authenticators" class="md-nav__link">
+    Federated Authenticators
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#identity-providers" title="Identity Providers" class="md-nav__link">
+    Identity Providers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#provisioning-framework_1" title="Provisioning Framework" class="md-nav__link">
+    Provisioning Framework
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authroization-manager" title="Authroization Manager" class="md-nav__link">
+    Authroization Manager
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#idp-and-sp-configurations" title="IDP and SP Configurations" class="md-nav__link">
+    IDP and SP Configurations
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inbound-provisioning_1" title="Inbound Provisioning" class="md-nav__link">
+    Inbound Provisioning
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user-store-manager" title="User Store Manager" class="md-nav__link">
+    User Store Manager
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#claim-manager" title="Claim Manager" class="md-nav__link">
+    Claim Manager
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xacml" title="XACML" class="md-nav__link">
+    XACML
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auditing" title="Auditing" class="md-nav__link">
+    Auditing
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outbound-provisioning_1" title="Outbound Provisioning" class="md-nav__link">
+    Outbound Provisioning
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      User Guides
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        User Guides
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../QSG/" title="Authentication" class="md-nav__link">
+      Authentication
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../QSG/" title="Account Management and Provisioning" class="md-nav__link">
+      Account Management and Provisioning
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../QSG/" title="API Security" class="md-nav__link">
+      API Security
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../QSG/" title="Access Control" class="md-nav__link">
+      Access Control
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../QSG/" title="Analytics" class="md-nav__link">
+      Analytics
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Admin Guides
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        Admin Guides
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../product_overview/" title="Developer Guide" class="md-nav__link">
+      Developer Guide
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../QSG/" title="Deployment Guide" class="md-nav__link">
+      Deployment Guide
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../QSG/" title="Integration Guide" class="md-nav__link">
+      Integration Guide
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../QSG/" title="Troubleshooting Guide" class="md-nav__link">
+      Troubleshooting Guide
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-and-process-flow" title="Architecture and Process Flow" class="md-nav__link">
+    Architecture and Process Flow
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authentication-framework" title="Authentication Framework" class="md-nav__link">
+    Authentication Framework
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#inbound-authenticators" title="Inbound Authenticators" class="md-nav__link">
+    Inbound Authenticators
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#local-authenticators" title="Local Authenticators" class="md-nav__link">
+    Local Authenticators
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outboundfederated-authenticators" title="Outbound/Federated Authenticators" class="md-nav__link">
+    Outbound/Federated Authenticators
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multi-option-authenticators" title="Multi-Option Authenticators" class="md-nav__link">
+    Multi-Option Authenticators
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multi-factor-authenticators" title="Multi-Factor Authenticators" class="md-nav__link">
+    Multi-Factor Authenticators
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#provisioning-framework" title="Provisioning Framework" class="md-nav__link">
+    Provisioning Framework
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#inbound-provisioning" title="Inbound provisioning" class="md-nav__link">
+    Inbound provisioning
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#just-in-time-provisioning" title="Just-in-time provisioning" class="md-nav__link">
+    Just-in-time provisioning
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outbound-provisioning" title="Outbound provisioning" class="md-nav__link">
+    Outbound provisioning
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#components" title="Components" class="md-nav__link">
+    Components
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-providers" title="Service Providers" class="md-nav__link">
+    Service Providers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inbound-authentication" title="Inbound Authentication" class="md-nav__link">
+    Inbound Authentication
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authentication-framework_1" title="Authentication Framework" class="md-nav__link">
+    Authentication Framework
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#local-authenticators_1" title="Local Authenticators" class="md-nav__link">
+    Local Authenticators
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#federated-authenticators" title="Federated Authenticators" class="md-nav__link">
+    Federated Authenticators
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#identity-providers" title="Identity Providers" class="md-nav__link">
+    Identity Providers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#provisioning-framework_1" title="Provisioning Framework" class="md-nav__link">
+    Provisioning Framework
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authroization-manager" title="Authroization Manager" class="md-nav__link">
+    Authroization Manager
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#idp-and-sp-configurations" title="IDP and SP Configurations" class="md-nav__link">
+    IDP and SP Configurations
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inbound-provisioning_1" title="Inbound Provisioning" class="md-nav__link">
+    Inbound Provisioning
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user-store-manager" title="User Store Manager" class="md-nav__link">
+    User Store Manager
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#claim-manager" title="Claim Manager" class="md-nav__link">
+    Claim Manager
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xacml" title="XACML" class="md-nav__link">
+    XACML
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auditing" title="Auditing" class="md-nav__link">
+    Auditing
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outbound-provisioning_1" title="Outbound Provisioning" class="md-nav__link">
+    Outbound Provisioning
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  <h1>User Management Architecture</h1>
+                
+                <h2 id="architecture-and-process-flow"><strong><font color="#455A64">Architecture and Process Flow</font></strong></h2>
+<p>WSO2 IS is a product built on top of WSO2 Carbon. Based on the OSGi specification, it enables easy customization and extension through its componentized architecture. </p>
+<p>Watch the following video for a quick overview of the process flow of the Identity Server architecture and how the various components interact with each other.</p>
+<iframe width="640" height="360" src="https://www.youtube.com/embed/ZnWnDZJ_c4o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<h2 id="authentication-framework"><strong><font color="#455A64">Authentication Framework</font></strong></h2>
+<p>The following are the authenticator types in the authentication framework. </p>
+<h3 id="inbound-authenticators"><strong>Inbound Authenticators</strong></h3>
+<p>The responsibility of inbound authenticators is to identify and parse all the incoming authentication requests and then build the corresponding response. A given inbound authenticator has two parts.</p>
+<ol>
+<li>Request Processor</li>
+<li>Response Builder </li>
+</ol>
+<p>For each protocol supported by WSO2 Identity Server, there should be an inbound authenticator. This architecture component includes inbound authenticators for <a href="http://saml.xml.org/saml-specifications">Security Assertion Markup Language (SAML) 2.0</a>, <a href="http://openid.net/connect/">OpenID Connect</a>, <a href="https://oauth.net/2/">OAuth 2.0</a>, and <a href="http://docs.oasis-open.org/wsfed/federation/v1.2/ws-federation.html">WS-Federation (passive)</a>. In other words, the responsibility of the SAML 2.0 request processor is to accept a SAML request from a service provider, validate the SAML request and then build a common object model understood by the authentication framework and handover the request to it. The responsibility of the SAML response builder is to accept a common object model from the authentication framework and build a SAML response out of it. Both the request processors and the response builders are protocol aware, while the authentication framework is not coupled to any protocol.</p>
+<h3 id="local-authenticators"><strong>Local Authenticators</strong></h3>
+<p>The responsibility of the local authenticators is to authenticate the user with locally available credentials. This can be either user name/password or even IWA (Integrated Windows Authentication). Local authenticators are decoupled from the Inbound Authenticators. Once the initial request is handed over to the authentication framework from an inbound authenticator, the authentication framework talks to the service provider configuration component to find the set of local authenticators registered with the service provider corresponding to the current authentication request.</p>
+<p>Once the local authentication is successfully completed, the local authenticator will notify the framework. The framework will now decide no more authentication is needed and hand over the control to the corresponding response builder of the inbound authenticator.</p>
+<p>You can develop your own local authenticators and plug them into the Identity Server.</p>
+<h3 id="outboundfederated-authenticators"><strong>Outbound/Federated Authenticators</strong></h3>
+<p>The responsibility of the federated authenticators is to authenticate the user with an external system. This can be with Facebook, Google, Yahoo, LinkedIn, Twitter, Salesforce or any other identity provider. Federated authenticators are decoupled from the Inbound Authenticators. Once the initial request is handed over to the authentication framework from an inbound authenticator, the authentication framework talks to the service provider configuration component to find the set of federated authenticators registered with the service provider corresponding to the current authentication request.</p>
+<p>A federated authenticator has no value unless it is associated with an identity provider. The Identity Server out-of-the-box supports Security Assertion Markup Language (SAML) 2.0, OpenID Connect, OAuth 2.0, and WS-Federation (passive). The SAML 2 .0 federated authenticator itself has no value. It has to be associated with an Identity Provider. Google Apps can be an identity provider - with the SAML 2.0 federated authenticator. This federated authenticator knows how to generate a SAML request to the Google Apps and process a SAML response from it.</p>
+<p>There are two parts in a federated authenticator.</p>
+<ol>
+<li>Request Builder</li>
+<li>Response Processor</li>
+</ol>
+<p>Once the federation authentication is successfully completed, the federated authenticator will notify the authentication framework. The framework will now decide no more authentication is needed and hand over the control to the corresponding response builder of the inbound authenticator.</p>
+<p>Both the request builder and the response processor are protocol aware while the authentication framework is not coupled to any protocol.</p>
+<p>You can develop your own federated authenticators and plug them into the Identity Server. </p>
+<h3 id="multi-option-authenticators"><strong>Multi-Option Authenticators</strong></h3>
+<p>The service provider can define how to authenticate users at the Identity Server, for authentication requests initiated by it. While doing that, each service provider can pick more than one authenticator to allow end users to get multiple login options. This can be a combination of local authenticators and federated authenticators.</p>
+<h3 id="multi-factor-authenticators"><strong>Multi-Factor Authenticators</strong></h3>
+<p>The service provider can define how to authenticate users at the Identity Server, for authentication requests initiated by it. While doing that, each service provider can define multiple steps and for each step it can pick more than one authenticator. The authentication framework tracks all the authenticators in each step and proceeds to the next step only if the user authenticates successfully in the current step. It is an AND between steps, while it is an OR between the authenticators in a given step.</p>
+<h2 id="provisioning-framework"><strong><font color="#455A64">Provisioning Framework</font></strong></h2>
+<p>The following are the provisioning components available in the provisioning framework.</p>
+<h3 id="inbound-provisioning"><strong>Inbound provisioning</strong></h3>
+<p>Inbound provisioning focuses on how to provision users to the Identity Server. Out-of-the-box, the Identity Server supports inbound provisioning via a Simple Object Access Protocol (SOAP) based API as well as the System for Cross-domain Identity Management (SCIM) 1.1 API. Both the APIs support HTTP Basic Authentication. If you invoke the provisioning API with Basic Authentication credentials, then where to provision the user (to which user store) will be decided based on the inbound provisioning configuration of the resident service provider.</p>
+<p>The SCIM API also supports OAuth 2.0. If the user authenticates to the SCIM API with OAuth credentials, then the system will load the configuration corresponding to the service provider who owns the OAuth client id. If you plan to invoke the SCIM API via a web application or a mobile application, we would highly recommend you to use OAuth instead of Basic Authentication. You simply need to register your application as a service provider in Identity Server and then generate OAuth keys.</p>
+<h3 id="just-in-time-provisioning"><strong>Just-in-time provisioning</strong></h3>
+<p>Just-in-time (JIT) provisioning talks about how to provision users to the Identity Server at the time of federated authentication. A service provider initiates the authentication request, the user gets redirected to the Identity Server and then Identity Server redirects the user to an external identity provider for authentication. Just-in-time provisioning gets triggered in such a scenario when the Identity Server receives a positive authentication response from the external identity provider. The Identity Server will provision the user to its internal user store with the user claims from the authentication response.</p>
+<p>You configure JIT provisioning against an identity provider - not against service providers. Whenever you associate an identity provider with a service provider for outbound authentication, if the JIT provisioning is enabled for that particular identity provider, then the users from the external identity provider will be provisioned into the Identity Server's internal user store. In the JIT provisioning configuration you can also pick the provisioning user store.</p>
+<p>JIT provisioning happens while in the middle of an authentication flow. The provisioning can happen in a blocking mode or in a non-blocking mode. In the blocking mode, the authentication flow will be blocked till the provisioning finishes - while in the non-blocking mode, provisioning happens in a different thread.</p>
+<h3 id="outbound-provisioning"><strong>Outbound provisioning</strong></h3>
+<p>Outbound provisioning talks about provisioning users to external systems. This can be initiated by any of the following.</p>
+<p>Inbound provisioning request (initiated by a service provider or the resident service provider)
+JIT provisioning (initiated by a service provider)
+Adding a user via the management console (initiated by the resident service provider)
+Assigning a user to a provisioning role (initiated by the resident service provider)
+WSO2 Identity Server supports outbound provisioning with the following connectors. You need to configure one or more outbound provisioning connectors with a given identity provider, and associate the identity provider with a service provider. All the provisioning requests must be initiated by a service provider - and will be provisioned to all the identity providers configured in the outbound provisioning configuration of the corresponding service provider.</p>
+<ul>
+<li>SCIM</li>
+<li>SPML</li>
+<li>SOAP</li>
+<li>Google Apps provisioning API</li>
+<li>Salesforce provisioning API</li>
+</ul>
+<h2 id="components"><strong><font color="#455A64">Components</font></strong></h2>
+<p>Following are the components pertaining to the architecture of the WSO2 Identity Server, which are depicted in the above figure and video.</p>
+<h3 id="service-providers"><strong>Service Providers</strong></h3>
+<p><strong>Description</strong>
+</br>
+A Service Provider (SP) is an entity that provides Web services. A service provider relies on a trusted Identity Provider (IdP) for authentication and authorization. In this case, the Identity Server acts as the IdP and does the task of authenticating and authorizing the user of the service provider.</p>
+<p>Salesforce and Google Apps are examples of service providers and are used as such in this case.</p>
+<div class="admonition info">
+<p class="admonition-title">Related Links</p>
+<p>For more informatino on how to add an SP to WSO2 IS, see <a href="https://docs.wso2.com/display/IS570/Adding+and+Configuring+a+Service+Provider">Adding and Configuring a Service Provider</a>.</p>
+</div>
+<p><strong>Process Flow</strong>
+</br>
+A user of the SP attempts to log into the SPs application. The service provider sends an authentication request to the Identity Server. This request is met by the Inbound Authentication component of the Identity Server and comes in one of the following forms.</p>
+<ul>
+<li>SAML SSO</li>
+<li>OAuth/OpenID Connect</li>
+<li>Passive STS</li>
+</ul>
+<p><img alt="screenshot" src="../images/serviceprovider_inboundauthentication.png" /></p>
+<p>The service provider receives the authentication confirmation from the Identity Server once it follows all the specified processes required in order to authenticate the SP's user. </p>
+<p>Additionally, if a user registers in the service provider's application, a Simple Object Access Protocol (SOAP) or System for Cross-domain Identity Management (SCIM) request can be sent to the Identity Server. The request is met by the Inbound Provisioning component of the Identity Server.</p>
+<p><img alt="screenshot" src="../images/serviceprovider_inboundprovisioning.png" /></p>
+<h3 id="inbound-authentication"><strong>Inbound Authentication</strong></h3>
+<h3 id="authentication-framework_1"><strong>Authentication Framework</strong></h3>
+<h3 id="local-authenticators_1"><strong>Local Authenticators</strong></h3>
+<h3 id="federated-authenticators"><strong>Federated Authenticators</strong></h3>
+<h3 id="identity-providers"><strong>Identity Providers</strong></h3>
+<h3 id="provisioning-framework_1"><strong>Provisioning Framework</strong></h3>
+<h3 id="authroization-manager"><strong>Authroization Manager</strong></h3>
+<h3 id="idp-and-sp-configurations"><strong>IDP and SP Configurations</strong></h3>
+<h3 id="inbound-provisioning_1"><strong>Inbound Provisioning</strong></h3>
+<h3 id="user-store-manager"><strong>User Store Manager</strong></h3>
+<h3 id="claim-manager"><strong>Claim Manager</strong></h3>
+<h3 id="xacml"><strong>XACML</strong></h3>
+<h3 id="auditing"><strong>Auditing</strong></h3>
+<h3 id="outbound-provisioning_1"><strong>Outbound Provisioning</strong></h3>
+<div class="admonition info">
+<p class="admonition-title">Related Links</p>
+<p>For further reading about the architecture in an Identity and Access Management solution, see the following article: <a href="https://wso2.com/whitepapers/identity-architect-ground-rules-ten-iam-design-principles/">Identity Architect Ground Rules: Ten IAM Design Principles</a>.</p>
+</div>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="./" title="Provisioning Architecture" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Provisioning Architecture
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../QSG/" title="Authentication" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Authentication
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.5e60981f.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      
+    
+    
+      
+    
+  </body>
+</html>
