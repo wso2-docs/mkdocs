@@ -1,0 +1,53 @@
+site_name: WSO2 Identity Server
+
+nav:
+    - Home: index.md
+    - About: about.md
+    - Getting Started:
+      - 'Product Overview': 'product_overview.md'
+      - 'QSG': 'QSG.md'
+      - 'Samples': 'QSG.md'
+      - 'Release Notes': 'QSG.md'
+      - 'Compliance and Privacy': 'QSG.md'
+    - Architecture:
+      - 'Architecture and Process Flow': 'architecture.md'
+      - 'Provisioning Architecture': 'architecture.md'
+      - 'User Management Architecture': 'architecture.md'
+    - User Guides:
+      - 'Authentication': 'QSG.md'
+      - 'Account Management and Provisioning': 'QSG.md'
+      - 'API Security': 'QSG.md'
+      - 'Access Control': 'QSG.md'
+      - 'Analytics': 'QSG.md'
+    - Admin Guides:
+      - 'Developer Guide': 'product_overview.md'
+      - 'Deployment Guide': 'QSG.md'
+      - 'Integration Guide': 'QSG.md'
+      - 'Troubleshooting Guide': 'QSG.md'
+
+theme:
+  name: 'material'
+  palette: 
+    primary: 'blue grey'
+    accent: 'deep orange'
+  font:
+    text: 'Nunito Sans'
+    code: 'Courier New'
+  logo: 'images/logo.svg'
+  language: 'en'
+  feature:
+    tabs: true  
+
+extra:
+  search:
+    language: 'en'
+    tokenizer: '[\s\-\.]+'  
+
+plugins:
+   - search
+
+extra_css: [extra.css]
+
+markdown_extensions:
+  - admonition
+  - codehilite
