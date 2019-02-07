@@ -1,1 +1,100 @@
+site_name: WSO2 Enterprise Integrator Documentation
 
+# Repository
+repo_name: View on Github
+repo_url: https://github.com/wso2-docs/mkdocs/mkdocs-ei
+
+nav:
+    - Getting Started:
+      - 'Introduction': 'GettingStarted/Overview.md'
+      - 'About this release': 'GettingStarted/About_this_Release.md'
+      - 'Quick Start': 'GettingStarted/QSG.md'
+    - Concepts: 
+      - 'Single Sign-On and Identity Federation': 'Concepts/Single_Sign-On_and_Identity_Federation.md'
+      - 'Identity_Provisioning and its Standards': 'Concepts/Identity_Provisioning_and_its_Standards.md'
+      - 'Access_Control and Entitlement Management': 'Concepts/Access_Control_and_Entitlement_Management.md'
+      - 'Identity Anti-patterns and the Identity Bus': 'Concepts/Identity_Anti-patterns_and_the_Identity_Bus.md'
+    - How Tos:
+      - 'Troubleshooting Guide': 'Troubleshooting.md'
+      - Best Practices Guide: 
+        - BestPracticesGuide/index.md
+        - Testing: 'Developer_Guide.md'
+      - 'Developer Guide': 
+        - Testing: 
+          - WUM Commands Guide: 'WUM_Commands_Guide.md'
+        - Another subpage:
+          - Develop: 'Developer_Guide.md'
+    - Develop:
+      - User Management for Developers:
+        - Writing a Custom Password Validator: 'Develop/user_mgt/Writing_a_Custom_Password_Validator.md'
+        - Writing a Custom Claim Handler: 'Develop/user_mgt/Writing_a_Custom_Claim_Handler.md'
+        - User Store Listeners: 'Develop/user_mgt/User_Store_Listeners.md'
+        - Using the User Management Errors Event Listener: 'Develop/user_mgt/Using_the_User_Management_Errors_Event_Listener.md'
+        - Carbon Remote User Store Manager: 'Develop/user_mgt/Carbon_Remote_User_Store_Manager.md'
+      - Provisioning for Developers:
+        - Writing an Outbound Provisioning Connector: 'Develop/provision/Writing_an_Outbound_Provisioning_Connector.md'
+        - Extensible SCIM User Schemas With WSO2 Identity Server: 'Develop/provision/Extensible_SCIM_User_Schemas_With_WSO2_Identity_Server.md'
+      - Identity Federation for Developers:
+        - Writing a Custom Federated Authenticator: 'Develop/federate/Writing_a_Custom_Federated_Authenticator.md'
+        - Writing a Custom Local Authenticator: 'Develop/federate/Writing_a_Custom_Local_Authenticator.md'
+    - Admin:
+      - 'Introduction': 'Getting_Started.md'
+      - 'Using WSO2 In-Place Updates': 'Using_WSO2_In-Place_Updates.md'
+    - Deploy:
+      - 'Introduction': 'Getting_Started.md'
+      - 'Using WSO2 In-Place Updates': 'Using_WSO2_In-Place_Updates.md'
+    - Troubleshooting:
+      - 'Introduction': 'Getting_Started.md'
+      - 'Using WSO2 In-Place Updates': 'Using_WSO2_In-Place_Updates.md'
+    - References:
+      - 'Introduction': 'Getting_Started.md'
+      - 'Using WSO2 In-Place Updates': 'Using_WSO2_In-Place_Updates.md'
+    - Community:
+      - 'Introduction': 'Getting_Started.md'
+      - 'Using WSO2 In-Place Updates': 'Using_WSO2_In-Place_Updates.md'
+
+theme:
+  name: 'material'
+  palette: 
+    primary: 'blue grey'
+    accent: 'deep orange'
+  font:
+    text: 'Nunito Sans'
+    code: 'Courier New'
+  logo: 'images/WSO2_Software_Logo.png'
+  language: 'en'
+  feature:
+    tabs: true  
+
+extra:
+    version: '2.4.4'
+    search:
+    language: 'en'
+    tokenizer: '[\s\-\.]+'
+   
+plugins:
+   - search
+
+extra_css: [extra.css]
+
+markdown_extensions:
+  - markdown_include.include:
+      base_path: docs
+  - admonition
+  - codehilite
+  - pymdownx.arithmatex
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:pymdownx.emoji.to_svg
+  - pymdownx.inlinehilite
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
